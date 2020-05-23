@@ -1,1 +1,1 @@
-#Krittika-Summer-Project-Hoping
+Krittika-Summer-Project-Hopping. Commiting changes via git. 
