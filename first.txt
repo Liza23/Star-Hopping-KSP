@@ -1,1 +1,0 @@
-This is the first week in the project Hopping. Basic Git and GitHub commands needs to be familarized. 
