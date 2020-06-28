@@ -118,7 +118,8 @@ def main():
     flag = input()
     
     # these parameters can be changed as per data required.
-    hop_stars = hop_func(limit_range = 50, max_range = 50, limiting_brightness = 0.1, x, y)
+    # limit_range = 50, max_range = 50, limiting_brightness = 0.1
+    hop_stars = hop_func(50, 50, 0.1, x, y)
     
     # hop_star is class hop_func() that have functions that return hopped star for every click.
     stars_catalogue = hop_stars.list_stars(df)
