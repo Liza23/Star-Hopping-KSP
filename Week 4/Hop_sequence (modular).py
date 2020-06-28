@@ -113,9 +113,9 @@ def main():
   hops = pd.DataFrame(columns = ['star','ra','dec'])
   flag = True
   while(flag):
-    x = input()
-    y = input()
-    flag = input()
+    x = input("x = ")
+    y = input("y = ")
+    flag = input("flag = ")
     
     # these parameters can be changed as per data required.
     # limit_range = 50, max_range = 50, limiting_brightness = 0.1
@@ -129,3 +129,5 @@ def main():
     hops = hops.append(hopped_star, ignore_index = True)
 
   return hops
+
+print(main())
