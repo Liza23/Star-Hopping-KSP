@@ -30,3 +30,6 @@ Follow these instructions in order to run editor interface and hop stars:
 - Once, you see the confirmation message, it will take some time to hop the stars which would be decided by the parameters you set in the **Pre-hopping instructions** and once the script ends, you can find your hopping sequence in the file!
 
 > Happy hopping!
+
+### Note
+This version basically saw a major change in the hopping algorithm and hence the integration of the new algorithm with the editor interface in the previous version.
