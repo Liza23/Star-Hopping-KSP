@@ -1,0 +1,2 @@
+# Editor Interface Version-1 
+This was the my first try with merging the hopping algorithm with the basic editor interface that was created by my team mate. It turned out to be successful. We used a random database [data_webscrapping.csv](https://github.com/Liza23/Star-Hopping-KSP/blob/master/Editor%20Interface/Editor%20Interface%20Version%201/data_webscraping.csv). The working and set-up instructions were removed as we already have the updated version out!
