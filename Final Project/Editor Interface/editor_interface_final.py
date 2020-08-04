@@ -14,6 +14,7 @@ from IPython.core.display import display, HTML
 import math
 display(HTML("<style>.container { width:100% !important; }</style>"))
 
+## The databases are imported first
 ng = pd.read_csv('Database/NGC.csv')
 ms = pd.read_csv('Database/messier_objects.csv')
 cb = pd.read_csv('Database/constellation_borders.csv')
@@ -43,7 +44,6 @@ pn4 = parse_path("""M 488,240 H 256 V 8 c 0,-4.418 -3.582,-8 -8,-8 -4.418,0 -8,3
 pn4.vertices -= pn4.vertices.mean(axis=0)
 
 # Editor Interface
-
 print("Enter the name of the Messier/Target object: ")
 name = str(input())
 print("Enter the RA/DEC of the Messier/Target object: ")
@@ -276,7 +276,6 @@ class ClickInfo(plugins.PluginBase):
 
 
 def func2(ra, dec, mag, fov):
-
     # sorting objects under the user input of limiting magnitude;
     # also duplicating the the objects and transforming them so they are repeated to the left of y-axis
     mag_ng = ng[(ng["V"] <= mag)]
@@ -403,11 +402,12 @@ def func2(ra, dec, mag, fov):
 
 func2(ra, dec, fov, mag)
 
+
+'''Hopping Algorithm begans here'''
+
 # The class Point() is used to store a 2-dimensional
 # coordinate poin, here used for storing RA and DEC
 # value of stars and clicked points
-
-
 class Point():
     def __init__(self, x, y):
         self.x = x
@@ -442,10 +442,6 @@ class hop_func():
 
         stars_catalogue = data[(data['RAJ2000'] > l_x_limit) & (data['RAJ2000'] < r_x_limit) & (
             data['DEJ2000'] > l_y_limit) & (data['DEJ2000'] < r_y_limit)]
-
-        # for i in range(len(data)):
-        #   if float((data['RAJ2000'].iloc[i]) > l_x_limit and float(data['RAJ2000'].iloc[i]) < r_x_limit) and ((data['DEJ2000'].iloc[i]).astype(float) > l_y_limit and (data['DEJ2000'].iloc[i]).astype(float) < r_y_limit):
-        #     stars_catalogue = stars_catalogue.append({'star': data['id'].iloc[i], 'RAJ2000': data['RAJ2000'].iloc[i], 'DEJ2000': data['DEJ2000'].iloc[i], 'V': data['V'].iloc[i]}, ignore_index=True)
 
         if len(stars_catalogue) >= self.max_stars:
             stars_catalogue = stars_catalogue[stars_catalogue['V']
@@ -542,4 +538,4 @@ def save_hops():
 
 # final hop sequence gets saved to a csv file
 final_hop_sequence = save_hops()
-final_hop_sequence.to_csv("hopping.csv")
+final_hop_sequence.to_csv("hops_M37.csv")
