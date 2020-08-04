@@ -17,6 +17,6 @@ To understand the code fully, refer to the [coding documentation](). On a broade
 We've created sample hops for M-37. The entire hop information is present in file `hops_M37.csv`. It contains the stars in the hopping sequence along with the text that the editor have entered during the hopping. 
 
 ## Setup And Usage
-Please read the Set-Up Instructions available [here]() to try hopping yourself as well.
+Please read the Set-Up Instructions available [here](https://github.com/Liza23/Star-Hopping-KSP/blob/master/Final%20Project/Editor%20Interface/Set-up-Instructions.md) to try hopping yourself as well.
 
 > Happy Hopping
