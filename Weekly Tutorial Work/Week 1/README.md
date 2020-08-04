@@ -28,6 +28,6 @@ Also, we need to take care of some technical details like the limit on the magni
 ## Interface
 In the first week, we would be trying to fetch data from a repository, and display it inside a window. Then we would try to create a smaller window and then add buttons to move around the image. We can use either Tkinter or Pygame or pygui for this.
 1. User Interface: 
-  - Graphical User interface (GUI) to slid along the image
+   - Graphical User interface (GUI) to slid along the image
 2. Admin/Editor Interface:
-  - GUI to show a dotted image and whenever he clicks a point, we will change the color of the dot to some random color/ and a box to the color that they want it to change.
+   - GUI to show a dotted image and whenever he clicks a point, we will change the color of the dot to some random color/ and a box to the color that they want it to change.
