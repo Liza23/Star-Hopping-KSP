@@ -6,9 +6,15 @@ Follow these instructions in order to run editor interface and hop stars:
 
 - Download the folder **Editor Interface** in your PC.
 - The script is written in Python with backend in JavaScript and a python compiler is needed to run the file. So, ensure that you've a python compiler in your PC.
-- In our project, we're using all the 4 csv files inside [Database](https://github.com/Liza23/Star-Hopping-KSP/tree/master/Final%20Project/Editor%20Interface/Database) folder. So, download/ add the database folder in the same **Editor Interface** folder where you're working.  
-- You must also download [requirements.txt](https://github.com/SahyadriDK/Hopping/blob/master/requirements.txt) file in the same folder, if not already present. 
-- You can use your own database as well, but this database used here is the very exhaustively compiled and is compatible with the code. In case you want to use your own database, ensure that you change the code accordingly.
+
+## Downloading the Database.
+
+- Within the editor interface folder lies the **Database** folder. This is where all the database csv files, once downloaded, will be placed.
+- This folder contains three files - IAU-CSN.csv which is the file containing star names,`query_program_input.py` which is the program that will download the database, and requirements.txt.
+- In order to use the program, first download the prerquisite modules for the program. This can be done by creating a new conda environment and using the requirements.txt file to generate the environments file. The instructions for this are given in requirements.txt.
+- After you have procurred the required packages via this method, you may use the program. This program will automatically download the messier catalogue, NGC catalogue and the constellation borders.
+- The download of the Tycho-1 stellar catalogue has been split into three runs - 1) from minimum till Vmag 6; 2) From Vmag 6 to 9; 3) From Vmag 9 to 10.5. Before each run the program will prompt if you want to proceed. This allows you to skip any of these runs if necessary. However, IT IS RECOMMENDED THAT YOU DOWNLOAD THE ENTIRETY OF THE TYCHO-1 DATABASE. The download will by default always download till Vmag 6.
+- After the download of Tycho-1, the program will ask if you would like to download the tycho-2 csv. The download of this file is completely optional, given that it is a large file (~150 Mb) and covers Vmag 10.5 to 12. Choosing not to download this program will not affect usage of the interface.
 
 For any other queries, please head to [this repository](https://github.com/SahyadriDK/Hopping). Make sure to read the ReadMe.md file in this repository before you actually move on to downloading the data files. 
 
