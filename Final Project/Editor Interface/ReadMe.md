@@ -1,6 +1,6 @@
 # Editor Interface
 This is the editor interface that we've created to the hop stars. The picture below is how the interface looks. It has various funationalities like zoom, save, undo, see the last hop, see the list of hops, etc and a detail of which can be read [here](). The interface backend is written in *Javascript*, while the plotting and finding hops algorithm is written in *Python*.
-![img](/example-images/interface.png)
+![img](https://github.com/Liza23/Star-Hopping-KSP/blob/master/Final%20Project/Editor%20Interface/example-images/interface.png)
 
 ## Folder Structure
 - The code for designing editor interface along with the algorithm is contained in `editor_interface_final.py` file.
