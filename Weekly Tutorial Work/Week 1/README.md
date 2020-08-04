@@ -19,7 +19,9 @@ Each Messier object would have what we call a marker star which would be the nea
 - One which one can make out unambiguously in the night sky like a significant star of a prominent constellation (Antares in Scorpion to hop to M4 globular cluster) or
 - A lone/known star in the region (Vega(not so lonely) to reach the Ring Nebula) or
 - A star easy to find using other constellation nearby ( eg: Sirius using Orion for hopping onto M41 star cluster in Canis Major)
+
 Once these marker stars/objects are identified we need to find a track/path to the object. Strategic objects in the sky which are easy to keep track of and also help as a base for further hop on to the object. One by one, the observer will move from one object to the next until they come into a striking range of the object and Voila, they have the object in their telescope field of view. Our aim is to create these paths and guide the observer on his tryst to find the Messier object. 
+
 We need to eliminate the unnecessary stars and keep only those of strategic importance while hopping and create a star by star guide for all Messier objects. It will take some time for you to get a hang of this as it is very easy to get lost in the sky but once you get a knack of it, you just have to let that inner explorer and navigator out on this voyage of Messiers.
 Also, we need to take care of some technical details like the limit on the magnitude of stars at some places, the flipping of image in the telescope, the difference in the field of view at different magnifications and finally keeping it as simple as possible
 
