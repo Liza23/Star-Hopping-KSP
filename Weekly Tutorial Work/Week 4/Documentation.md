@@ -24,4 +24,4 @@ In this case a square with boundary points as (50, 50), (50, -50), (-50, 50) and
 4. x = 225 and y = 50 
 In this case a square with boundary points as (275, 100), (275, 0), (175, 100) and (175, 0) is created and we can see clearly that only (200, 20) lies inside the limiting square and hence is returned.
 
-## The Nan value can be removed finally if we want by a simple operation.
+**The Nan value can be removed finally if we want by a simple operation.**
