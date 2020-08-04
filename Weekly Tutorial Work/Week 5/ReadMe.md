@@ -1,0 +1,2 @@
+# Overview
+From this week onwards, the weekly work sort of reduced and there were no clear dimensions between what work is aimed for which week, as we progreesed on making the entire project. Mostly, this week I made changes to the algogrithm code available [here](https://github.com/Liza23/Star-Hopping-KSP/tree/master/Weekly%20Tutorial%20Work/Week%204). You can refer to the code documentation as well attached to that. I aimed on making the code more **Modular** as suggested by one of our mentor. 
