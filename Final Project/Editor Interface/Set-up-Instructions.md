@@ -2,7 +2,7 @@
 
 Follow these instructions in order to run editor interface and hop stars:
 
-## Inital basic Setup for Database
+## Inital Setup
 
 - Download the folder **Editor Interface** in your PC.
 - The script is written in Python with backend in JavaScript and a python compiler is needed to run the file. So, ensure that you've a python compiler in your PC.
