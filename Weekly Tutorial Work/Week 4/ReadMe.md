@@ -1,4 +1,4 @@
-# Documentation
+# Code Documentation
 - `main()` is the main function that drives the code. It takes input until no further input is given i.e. when the user wants to give no more input, they need to leave a blank space when asked for flag input.
 
 - In each loop of input it first creates a Point object with the name click and coordinates of click as the input x and input y, then calls a function `list_stars()` to return a pandas data frame of only those stars that lie within the limiting square with click Point as the center.
