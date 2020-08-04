@@ -518,8 +518,9 @@ def save_hops():
         elem = elem.split(",")
         x = float(elem[0])
         y = float(elem[1])
-
-        hop_stars = hop_func(10, 5, 5, x, y)
+        
+        # limit_range is set to 10, max_stars to 1000 and limit_brightness to 6
+        hop_stars = hop_func(10, 1000, 6, x, y)
         stars_catalogue = hop_stars.list_stars(
             ty.filter(items=['Name', 'RAJ2000', 'DEJ2000', 'V']))
         hopped_star = hop_stars.hop_near_click(stars_catalogue, hops)
