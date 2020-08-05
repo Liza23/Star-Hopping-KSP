@@ -9,5 +9,5 @@ The first field asks "Which Messier object you want to hop?". Here the user have
 ## Telescopic Details
 ### Aperture of the telescope
 This is a necessary field and is used for calculating the limiting magnitude of the telescope using the formula:
-> m_lim = 2+5*np.log<sub>10</sub>(aperture)
+> **m_lim = 2+5(log<sub>10</sub>(aperture))**
 
