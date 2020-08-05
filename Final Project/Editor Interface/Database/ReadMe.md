@@ -24,3 +24,5 @@ end of each run the tycho download, the program will ask you if you'd like to pr
 At the end of the program, the multiple files will be combined, which may also take time.
 
 All the downloaded files will be in your working directory
+
+**The database is contributed by [ShayadriDK](https://github.com/SahyadriDK/Hopping).**
