@@ -33,4 +33,7 @@ After successfully submitting the values, the user has to chose the type of plot
 If a user choose a static plot button, then he'll be able to see the entire hopping sequence in one go, which will appear as white lines on the sky plot. 
 
 ### Interactive Plot
-If a user chooses an interactive plot, two more buttons will appear on the screen, one would be the "Next" button and other will be "Show full sequence" button. If a user will click on the next button, he w
+If a user chooses an interactive plot, two more buttons will appear on the screen, one would be the "Next" button and other will be "Show full sequence" button. If a user will click on the next button, he would be able to see the hops one by one, in sequence along with the hopping text that would appear next to the next button. "Show full sequence" button can be used by the user anytime to see the full hopping sequence at any point of time.
+
+## Telescopic Plots
+Two telescopic plots can be generated as per user choice, on having field of view through eye piece and other through finder scope. 
