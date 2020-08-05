@@ -1,5 +1,4 @@
-# Hopping
-Repository containing work done in hopping project
+# Database
 
 In order to use this program, first obtain the entire folder called Database, available in this git repo.
 
