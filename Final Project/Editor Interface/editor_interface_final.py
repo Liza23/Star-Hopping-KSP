@@ -12,10 +12,11 @@ import matplotlib.lines as mlines
 from IPython.core.display import display, HTML
 display(HTML("<style>.container { width:100% !important; }</style>"))
 
-ng = pd.read_csv('/Users/yashakaushal/Documents/summer_project/interface/NGC.csv')
-ms = pd.read_csv('/Users/yashakaushal/Documents/summer_project/interface/messier_objects.csv')
-cb = pd.read_csv('/Users/yashakaushal/Documents/summer_project/interface/constellation_borders.csv')
-ty = pd.read_csv('/Users/yashakaushal/Documents/summer_project/interface/tycho_1.csv')
+ng = pd.read_csv('Database/NGC.csv')
+ms = pd.read_csv('Database/messier_objects.csv')
+cb = pd.read_csv('Database/constellation_borders.csv')
+ty = pd.read_csv('Database/tycho_1.csv')
+ty2 = pd.read_csv('Database/tycho_2.csv')
 
 
 ga = parse_path("""M 490.60742,303.18917 A 276.31408,119.52378 28.9 0 1 190.94051,274.29027 276.31408,119.52378 28.9 0 1 6.8010582,36.113705 276.31408,119.52378 28.9 0 1 306.46799,65.012613 276.31408,119.52378 28.9 0 1 490.60742,303.18917 Z""")
@@ -357,16 +358,16 @@ def func(ra,dec,mag,fov):
 # scatter ngc
     mag = mag_ng['mag'].fillna(1)
     flux = 10**(-mag/2.5)
-    p5 = ax.scatter(mag_ng['_RAJ2000'], mag_ng['_DEJ2000'], c='white',alpha=0.8,s= 80*flux)
-    l5 = ["[RA {0:.5f} \v DEC {1:.5f} \v Constellation {2} \v Name {3}]".format(i,j,k,l,'.2f','.2f','%s','%s') for i,j,k,l in zip(mag_ng['_RAJ2000'],mag_ng['_DEJ2000'],mag_ng['Constellation'],mag_ng['Name'])]
+    p5 = ax.scatter(mag_ng['RAJ2000'], mag_ng['DEJ2000'], c='white',alpha=0.8,s= 80*flux)
+    l5 = ["[RA {0:.5f} \v DEC {1:.5f} \v Constellation {2} \v Name {3}]".format(i,j,k,l,'.2f','.2f','%s','%s') for i,j,k,l in zip(mag_ng['RAJ2000'],mag_ng['DEJ2000'],mag_ng['Constellation'],mag_ng['Name'])]
     t5 = plugins.PointLabelTooltip(p5,l5)
     plugins.connect(fig, t5)
 
 # scatter tycho-1
     mag = mag_ty['V'].fillna(1)
     flux = 10**(-mag/2.5)
-    p6 = ax.scatter(mag_ty['_RAJ2000'], mag_ty['_DEJ2000'], c='white', s= 80*flux)
-    l6 = ["[RA {0:.5f} \v DEC {1:.5f} \v Constellation {2} \v Name {3}]".format(i,j,k,l,'.2f','.2f','%s','%s') for i,j,k,l in zip(mag_ty['_RAJ2000'],mag_ty['_DEJ2000'],mag_ty['Constellation'],mag_ty['Bayer'])]
+    p6 = ax.scatter(mag_ty['RAJ2000'], mag_ty['DEJ2000'], c='white', s= 80*flux)
+    l6 = ["[RA {0:.5f} \v DEC {1:.5f} \v Constellation {2} \v Name {3}]".format(i,j,k,l,'.2f','.2f','%s','%s') for i,j,k,l in zip(mag_ty['RAJ2000'],mag_ty['DEJ2000'],mag_ty['Constellation'],mag_ty['Bayer'])]
     t6 = plugins.PointLabelTooltip(p6,l6)
     plugins.connect(fig, t6)
     
@@ -411,7 +412,7 @@ def func(ra,dec,mag,fov):
 
 func(ra,dec,mag,fov)
 
-'''Hopping Algorithm begans here'''
+'''Hopping Algorithm begins here'''
 
 # The class Point() is used to store a 2-dimensional
 # coordinate poin, here used for storing RA and DEC
