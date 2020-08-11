@@ -2,9 +2,8 @@ Messier objects which include clusters, galaxies, nebulae and other fun stuff ar
 
 The project goals are summarised below:
 
-Used various existing catalogs for creating the database.
-Used python scripts that use the database information to generate output plots and guidelines.
-Created an easy to understand hopping guide that accommodates different markers for different objects and IAU legends.
-Created two separate interfaces one for the users and one for the editors.
-Created the user interface such that takes the name of the stellar objects, location of the user, date and time as inputs and generates the hopping guide to that particular stellar object as output.
-About
+- Used various existing catalogs for creating the database.
+- Used python scripts that use the database information to generate output plots and guidelines.
+- Created an easy to understand hopping guide that accommodates different markers for different objects and IAU legends.
+- Created two separate interfaces one for the users and one for the editors.
+- Created the user interface such that takes the name of the stellar objects, location of the user, date and time as inputs and generates the hopping guide to that particular stellar object as output.
