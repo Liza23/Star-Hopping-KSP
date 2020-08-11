@@ -1,5 +1,6 @@
 # Editor Interface Functionality
 
+This piece of code is contributed by [Yasha Kaushal](https://github.com/yashakaushal)
 ## User Input 
 
 When the program starts running, three inputs are asked to be given by the user:
