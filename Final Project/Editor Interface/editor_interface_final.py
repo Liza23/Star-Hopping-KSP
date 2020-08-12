@@ -270,11 +270,11 @@ class ClickInfo(plugins.PluginBase):
 
 # Editor Interface Plot
 
-ng = pd.read_csv('/Users/yashakaushal/Documents/summer_project/Database/NGC.csv')
-ms = pd.read_csv('/Users/yashakaushal/Documents/summer_project/Database/messier_objects.csv')
-cb = pd.read_csv('/Users/yashakaushal/Documents/summer_project/Database/constellation_borders.csv')
-ty1 = pd.read_csv('/Users/yashakaushal/Documents/summer_project/Database/tycho-1.csv')
-ty2 = pd.read_csv('/Users/yashakaushal/Documents/summer_project/Database/tycho-2.csv')
+ng = pd.read_csv('Database/NGC.csv')
+ms = pd.read_csv('Database/messier_objects.csv')
+cb = pd.read_csv('Database/constellation_borders.csv')
+ty1 = pd.read_csv('Database/tycho-1.csv')
+ty2 = pd.read_csv('Database/tycho-2.csv')
 
 
 ga = parse_path("""M 490.60742,303.18917 A 276.31408,119.52378 28.9 0 1 190.94051,274.29027 276.31408,119.52378 28.9 0 1 6.8010582,36.113705 276.31408,119.52378 28.9 0 1 306.46799,65.012613 276.31408,119.52378 28.9 0 1 490.60742,303.18917 Z""")
