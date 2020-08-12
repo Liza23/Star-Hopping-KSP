@@ -11,36 +11,9 @@ from svgpath2mpl import parse_path
 import matplotlib.lines as mlines
 from IPython.core.display import display, HTML
 display(HTML("<style>.container { width:100% !important; }</style>"))
-
-ng = pd.read_csv('Database/NGC.csv')
-ms = pd.read_csv('Database/messier_objects.csv')
-cb = pd.read_csv('Database/constellation_borders.csv')
-ty = pd.read_csv('Database/tycho_1.csv')
-ty2 = pd.read_csv('Database/tycho_2.csv')
-
-
-ga = parse_path("""M 490.60742,303.18917 A 276.31408,119.52378 28.9 0 1 190.94051,274.29027 276.31408,119.52378 28.9 0 1 6.8010582,36.113705 276.31408,119.52378 28.9 0 1 306.46799,65.012613 276.31408,119.52378 28.9 0 1 490.60742,303.18917 Z""")
-ga.vertices -= ga.vertices.mean(axis=0)
-# red
-
-cl = parse_path("""M 541.64941,265.49102 A 270.8247,265.49102 0 0 1 270.82471,530.98205 270.8247,265.49102 0 0 1 0,265.49102 270.8247,265.49102 0 0 1 270.82471,0 270.8247,265.49102 0 0 1 541.64941,265.49102 Z""")
-cl.vertices -= cl.vertices.mean(axis=0)
-# yellow
-
-pn2 = parse_path("""m 0,326.75709 v 18.09653 h 671.61069 v -18.09653 z m 326.7571,344.85359 h 18.0965 V 0 h -18.0965 z""")
-pn2.vertices -= pn2.vertices.mean(axis=0)
-# black
-
-pl = parse_path("""m 65.722069,112.42727 v 2.87837 h 2.878368 v 0.87849 h -2.878368 v 2.87837 h -0.868162 v -2.87837 h -2.878368 v -0.87849 h 2.878368 v -2.87837 z""")
-pl.vertices -= pl.vertices.mean(axis=0)      
-
-cp = parse_path("""M 749.48177,361.96144 V 387.5203 H 0 V 361.96144 Z M 361.96144,0 h 25.55886 v 749.48177 h -25.55886 z m 239.5511,374.74089 A 226.77166,226.77166 0 0 1 374.74089,601.51254 226.77166,226.77166 0 0 1 147.96923,374.74089 226.77166,226.77166 0 0 1 374.74089,147.96923 226.77166,226.77166 0 0 1 601.51254,374.74089 Z""")
-cp.vertices -= cp.vertices.mean(axis=0)  
-
-pn4 = parse_path("""M 488,240 H 256 V 8 c 0,-4.418 -3.582,-8 -8,-8 -4.418,0 -8,3.582 -8,8 V 240 H 8 c -4.418,0 -8,3.582 -8,8 0,4.418 3.582,8 8,8 h 232 v 232 c 0,4.418 3.582,8 8,8 4.418,0 8,-3.582 8,-8 V 256 h 232 c 4.418,0 8,-3.582 8,-8 0,-4.418 -3.582,-8 -8,-8 z""")
-pn4.vertices -= pn4.vertices.mean(axis=0)
     
-# Editor Interface buttons and plot
+# Input from the Editor
+ 
 fov = 10 
 def check_radec(rd):
     global radec
@@ -74,6 +47,8 @@ dec = float(radec.split('/')[1])
 print("Enter the limiting magnitude (positive integer only): ")
 mag = str(input())
 check_mag(mag)
+
+# Class containing buttons and interactive options in the plot
 
 class ClickInfo(plugins.PluginBase):
     """Plugin for getting info on click"""
@@ -293,15 +268,46 @@ class ClickInfo(plugins.PluginBase):
                       }
         print([utils.get_id(i) for i in p])
 
+# Editor Interface Plot
+
+ng = pd.read_csv('/Users/yashakaushal/Documents/summer_project/Database/NGC.csv')
+ms = pd.read_csv('/Users/yashakaushal/Documents/summer_project/Database/messier_objects.csv')
+cb = pd.read_csv('/Users/yashakaushal/Documents/summer_project/Database/constellation_borders.csv')
+ty1 = pd.read_csv('/Users/yashakaushal/Documents/summer_project/Database/tycho-1.csv')
+ty2 = pd.read_csv('/Users/yashakaushal/Documents/summer_project/Database/tycho-2.csv')
+
+
+ga = parse_path("""M 490.60742,303.18917 A 276.31408,119.52378 28.9 0 1 190.94051,274.29027 276.31408,119.52378 28.9 0 1 6.8010582,36.113705 276.31408,119.52378 28.9 0 1 306.46799,65.012613 276.31408,119.52378 28.9 0 1 490.60742,303.18917 Z""")
+ga.vertices -= ga.vertices.mean(axis=0)
+# red
+
+cl = parse_path("""M 541.64941,265.49102 A 270.8247,265.49102 0 0 1 270.82471,530.98205 270.8247,265.49102 0 0 1 0,265.49102 270.8247,265.49102 0 0 1 270.82471,0 270.8247,265.49102 0 0 1 541.64941,265.49102 Z""")
+cl.vertices -= cl.vertices.mean(axis=0)
+# yellow
+
+pn2 = parse_path("""m 0,326.75709 v 18.09653 h 671.61069 v -18.09653 z m 326.7571,344.85359 h 18.0965 V 0 h -18.0965 z""")
+pn2.vertices -= pn2.vertices.mean(axis=0)
+# black
+
+pl = parse_path("""m 65.722069,112.42727 v 2.87837 h 2.878368 v 0.87849 h -2.878368 v 2.87837 h -0.868162 v -2.87837 h -2.878368 v -0.87849 h 2.878368 v -2.87837 z""")
+pl.vertices -= pl.vertices.mean(axis=0)      
+
+cp = parse_path("""M 749.48177,361.96144 V 387.5203 H 0 V 361.96144 Z M 361.96144,0 h 25.55886 v 749.48177 h -25.55886 z m 239.5511,374.74089 A 226.77166,226.77166 0 0 1 374.74089,601.51254 226.77166,226.77166 0 0 1 147.96923,374.74089 226.77166,226.77166 0 0 1 374.74089,147.96923 226.77166,226.77166 0 0 1 601.51254,374.74089 Z""")
+cp.vertices -= cp.vertices.mean(axis=0)  
+
+pn4 = parse_path("""M 488,240 H 256 V 8 c 0,-4.418 -3.582,-8 -8,-8 -4.418,0 -8,3.582 -8,8 V 240 H 8 c -4.418,0 -8,3.582 -8,8 0,4.418 3.582,8 8,8 h 232 v 232 c 0,4.418 3.582,8 8,8 4.418,0 8,-3.582 8,-8 V 256 h 232 c 4.418,0 8,-3.582 8,-8 0,-4.418 -3.582,-8 -8,-8 z""")
+pn4.vertices -= pn4.vertices.mean(axis=0)
+
 def func(ra,dec,mag,fov):
     
-# sorting objects under the user input of limiting magnitude; 
-# also duplicating the the objects and transforming them so they are repeated to the left of y-axis
-    mag_ng = ng[(ng["mag"]<=mag)]
-    mag_ms = ms[(ms['V']<=mag)]
-    mag_ty = ty[(ty['V']<=mag)]
+# sorting objects under the user input of limiting magnitude
+
+    mag_ng = ng[(ng["V"] <= mag)]
+    mag_ms = ms[(ms['V'] <= mag)]
+    mag_ty1 = ty1[(ty1['V'] <= mag)]
+    mag_ty2 = ty2[(ty2['V'] <= mag)]
         
-# breathing space aroung the fov circle in the plot
+# breathing space around the fov circle in the plot
     xl = ra-fov/2-fov/10 
     xr = ra+fov/2+fov/10
     yb = dec-fov/2-fov/10
@@ -310,13 +316,13 @@ def func(ra,dec,mag,fov):
     fig, ax = plt.subplots(figsize=(15,7))
     ax.set_xlabel('Right Ascension (degrees)', fontsize=20)
     ax.set_ylabel('Declination (degrees)', fontsize=20)
-    ax.scatter(ra,dec,s=50,marker='P',color='yellow',zorder=100)
+    ax.scatter(ra,dec,s=50,marker='P',color='yellow',zorder=10)
     
 # sorting objects in messier_objects.csv according to objects
-    cl_ms = ms[(ms["OTYPE_3"]=='OpC')|(ms["OTYPE_3"]=='GlC')|(ms["OTYPE_3"]=='Cl*')]
-    pn_ms = ms[(ms["OTYPE_3"]=='PN')]
-    ga_ms = ms[(ms["OTYPE_3"]=='G')|(ms["OTYPE_3"]=='Sy2')|(ms["OTYPE_3"]=='IG')|(ms["OTYPE_3"]=='GiG')|(ms["OTYPE_3"]=='GiP')|(ms["OTYPE_3"]=='SyG')|(ms["OTYPE_3"]=='SBG')|(ms["OTYPE_3"]=='BiC')|(ms["OTYPE_3"]=='H2G')]
-    re_ms = ms[(ms["OTYPE_3"]=='HII')|(ms["OTYPE_3"]=='As*')|(ms["OTYPE_3"]=='LIN')|(ms["OTYPE_3"]=='mul')|(ms["OTYPE_3"]=='RNe')|(ms["OTYPE_3"]=='AGN')]
+    cl_ms = ms[(ms["TYPE"]=='OpC')|(ms["TYPE"]=='GlC')|(ms["TYPE"]=='Cl*')]
+    pn_ms = ms[(ms["TYPE"]=='PN')]
+    ga_ms = ms[(ms["TYPE"]=='G')|(ms["TYPE"]=='Sy2')|(ms["TYPE"]=='IG')|(ms["TYPE"]=='GiG')|(ms["TYPE"]=='GiP')|(ms["TYPE"]=='SyG')|(ms["TYPE"]=='SBG')|(ms["TYPE"]=='BiC')|(ms["TYPE"]=='H2G')]
+    re_ms = ms[(ms["TYPE"]=='HII')|(ms["TYPE"]=='As*')|(ms["TYPE"]=='LIN')|(ms["TYPE"]=='mul')|(ms["TYPE"]=='RNe')|(ms["TYPE"]=='AGN')]
 
     print(f"Observing RA: {ra} deg, DEC: {dec} deg, FoV: {fov} deg, Limiting Magnitude: {mag}") 
     
@@ -330,54 +336,54 @@ def func(ra,dec,mag,fov):
     mag = cl_ms["V"].fillna(1) 
     flux = 10**(-mag/2.5)
     p1 = ax.scatter(cl_ms['RAJ2000'],cl_ms['DEJ2000'],color='darkorange',s = 17, zorder=10, edgecolor="black")
-    l1 = ["[RA {0:.5f} \v DEC {1:.5f} \v Constellation {2} \v Name {3}]".format(i,j,k,l,'.2f','.2f','%s','%s') for i,j,k,l in zip(cl_ms['RAJ2000'],cl_ms['DEJ2000'],cl_ms['Constellation'],cl_ms["MAIN_ID"])]
+    l1 = ["[RA {0:.5f} \v DEC {1:.5f} \v Constellation {2} \v Name {3}]".format(i,j,k,l,'.2f','.2f','%s','%s') for i,j,k,l in zip(cl_ms['RAJ2000'],cl_ms['DEJ2000'],cl_ms['Constellation'],cl_ms["Common Name"])]
     t1 = plugins.PointLabelTooltip(p1, l1)
     plugins.connect(fig, t1)
 
     mag = pn_ms["V"].fillna(1) 
     flux = 10**(-mag/2.5)
-    p2 = ax.scatter(pn_ms['RAJ2000'],pn_ms['DEJ2000'],color='red',s= 17, zorder=10,edgecolor="black")
-    l2 = ["[RA {0:.5f} \v DEC {1:.5f} \v Constellation {2} \v Name {3}]".format(i,j,k,l, '.2f','.2f','%s','%s') for i,j,k,l in zip(pn_ms['RAJ2000'],pn_ms['DEJ2000'],pn_ms['Constellation'],pn_ms["MAIN_ID"])]
+    p2 = ax.scatter(pn_ms['RAJ2000'],pn_ms['DEJ2000'],color='blue',s= 17, zorder=10,edgecolor="black")
+    l2 = ["[RA {0:.5f} \v DEC {1:.5f} \v Constellation {2} \v Name {3}]".format(i,j,k,l, '.2f','.2f','%s','%s') for i,j,k,l in zip(pn_ms['RAJ2000'],pn_ms['DEJ2000'],pn_ms['Constellation'],pn_ms["Common Name"])]
     t2 = plugins.PointLabelTooltip(p2, l2)
     plugins.connect(fig, t2)
 
     mag = ga_ms["V"].fillna(1) 
     flux = 10**(-mag/2.5)
     p3 = ax.scatter(ga_ms['RAJ2000'],ga_ms['DEJ2000'],color='red',s= 17 ,zorder=20, edgecolor="black")
-    l3 = ["[RA {0:.5f} \v DEC {1:.5f} \v Constellation {2} \v Name {3}]".format(i,j,k,l,'.2f','.2f','%s',"%s") for i,j,k,l in zip(ga_ms['RAJ2000'],ga_ms['DEJ2000'],ga_ms['Constellation'],ga_ms["MAIN_ID"])]
+    l3 = ["[RA {0:.5f} \v DEC {1:.5f} \v Constellation {2} \v Name {3}]".format(i,j,k,l,'.2f','.2f','%s',"%s") for i,j,k,l in zip(ga_ms['RAJ2000'],ga_ms['DEJ2000'],ga_ms['Constellation'],ga_ms["Common Name"])]
     t3 = plugins.PointLabelTooltip(p3, l3)
     plugins.connect(fig, t3)
 
     mag = re_ms["V"].fillna(1) 
     flux = 10**(-mag/2.5)
-    p4 = ax.scatter(re_ms['RAJ2000'],re_ms['DEJ2000'],c='red',s= 17,edgecolor="black")
-    l4 = ["[RA {0:.5f} \v DEC {1:.5f} \v Constellation {2} \v Name {3}]".format(i,j,k,l,'.2f','.2f','%s','%s') for i,j,k,l in zip(re_ms['RAJ2000'],re_ms['DEJ2000'],re_ms['Constellation'],re_ms["MAIN_ID"])]
+    p4 = ax.scatter(re_ms['RAJ2000'],re_ms['DEJ2000'],c='darkmagenta',s= 17,edgecolor="black")
+    l4 = ["[RA {0:.5f} \v DEC {1:.5f} \v Constellation {2} \v Name {3}]".format(i,j,k,l,'.2f','.2f','%s','%s') for i,j,k,l in zip(re_ms['RAJ2000'],re_ms['DEJ2000'],re_ms['Constellation'],re_ms["Common Name"])]
     t4 = plugins.PointLabelTooltip(p4, l4)
     plugins.connect(fig, t4)
 
 # scatter ngc
-    mag = mag_ng['mag'].fillna(1)
+    mag = mag_ng['V'].fillna(1)
     flux = 10**(-mag/2.5)
-    p5 = ax.scatter(mag_ng['RAJ2000'], mag_ng['DEJ2000'], c='white',alpha=0.8,s= 80*flux)
+    p5 = ax.scatter(mag_ng['RAJ2000'], mag_ng['DEJ2000'], c='darkmagenta',s= 80*flux)
     l5 = ["[RA {0:.5f} \v DEC {1:.5f} \v Constellation {2} \v Name {3}]".format(i,j,k,l,'.2f','.2f','%s','%s') for i,j,k,l in zip(mag_ng['RAJ2000'],mag_ng['DEJ2000'],mag_ng['Constellation'],mag_ng['Name'])]
     t5 = plugins.PointLabelTooltip(p5,l5)
     plugins.connect(fig, t5)
 
 # scatter tycho-1
-    mag = mag_ty['V'].fillna(1)
+    mag = mag_ty1['V'].fillna(1)
     flux = 10**(-mag/2.5)
-    p6 = ax.scatter(mag_ty['RAJ2000'], mag_ty['DEJ2000'], c='white', s= 80*flux)
-    l6 = ["[RA {0:.5f} \v DEC {1:.5f} \v Constellation {2} \v Name {3}]".format(i,j,k,l,'.2f','.2f','%s','%s') for i,j,k,l in zip(mag_ty['RAJ2000'],mag_ty['DEJ2000'],mag_ty['Constellation'],mag_ty['Bayer'])]
+    p6 = ax.scatter(mag_ty1['RAJ2000'], mag_ty1['DEJ2000'], c='white', s= 80*flux)
+    l6 = ["[RA {0:.5f} \v DEC {1:.5f} \v Constellation {2} \v Name {3}]".format(i,j,k,l,'.2f','.2f','%s','%s') for i,j,k,l in zip(mag_ty1['RAJ2000'],mag_ty1['DEJ2000'],mag_ty1['Constellation'],mag_ty1['Name'])]
     t6 = plugins.PointLabelTooltip(p6,l6)
     plugins.connect(fig, t6)
     
 # scatter tycho-2 
-#     mag = mag_ty['V'].fillna(1)
-#     flux = 10**(-mag/2.5)
-#     p7 = ax.scatter(mag_ty['_RAJ2000'], mag_ty['_DEJ2000'], c='white', s= 80*flux)
-#     l7 = ["[RA {0:.5f} \v DEC {1:.5f} \v Constellation {2} \v Name {3}]".format(i,j,k,l,'.2f','.2f','%s','%s') for i,j,k,l in zip(mag_ty['_RAJ2000'],mag_ty['_DEJ2000'],mag_ty['Constellation'],mag_ty['Bayer'])]
-#     t7 = plugins.PointLabelTooltip(p7,l7)
-#     plugins.connect(fig, t7)
+    # mag = mag_ty2['V'].fillna(1)
+    # flux = 10**(-mag/2.5)
+    # p7 = ax.scatter(mag_ty2['RAJ2000'], mag_ty2['DEJ2000'], c='white', s= 80*flux)
+    # l7 = ["[RA {0:.5f} \v DEC {1:.5f} \v Constellation {2} ]".format(i,j,k,'.2f','.2f','%s') for i,j,k in zip(mag_ty2['RAJ2000'],mag_ty2['DEJ2000'],mag_ty2['Constellation'])]
+    # t7 = plugins.PointLabelTooltip(p7,l7)
+    # plugins.connect(fig, t7)
     
     points = [p1,p2,p3,p4,p5,p6]
     labels = [l1,l2,l3,l4,l5,l6]
@@ -398,15 +404,15 @@ def func(ra,dec,mag,fov):
     
     cluster = mlines.Line2D([], [], color='darkorange', marker=cl, linestyle='None',
                               markersize=15, label='Clusters', markeredgecolor="black")
-    plantary_neb = mlines.Line2D([], [], color='green', marker=cl, linestyle='None',
-                              markersize=15, label='Planetary Nebula')
-    planetary_neb2 = mlines.Line2D([], [], color='black', marker=pn4, linestyle='None',
-                              markersize=15, label='Planetary Nebula')
+    planetary_neb = mlines.Line2D([], [], color='blue', marker=cl, linestyle='None',
+                              markersize=15, label='Planetary Nebula',markeredgecolor="black")
     galaxy = mlines.Line2D([], [], color='Red', marker=cl, linestyle='None',
-                              markersize=15, label='Galaxies')
-    rest = mlines.Line2D([], [], color='white', marker=cl, linestyle='None',
-                              markersize=15, label='Rest', markeredgecolor="white", markeredgewidth=1)
-    plt.legend(handles=[cluster,planetary_neb2, galaxy, rest], labelspacing=5, ncol=4, borderpad=1, loc='lower center')
+                              markersize=15, label='Galaxies',markeredgecolor="black")
+    other = mlines.Line2D([], [], color='darkmagenta', marker=cl, linestyle='None',
+                              markersize=15, label='Other NGC/Messier', markeredgecolor="black")
+    stars = mlines.Line2D([], [], color='white', marker=cl, linestyle='None',
+                              markersize=15, label='Stars', markeredgecolor="black")
+    plt.legend(handles=[cluster,planetary_neb, galaxy, other, stars], labelspacing=2, ncol=5, borderpad=1, loc='lower center')
 
     mpld3.show()
 
