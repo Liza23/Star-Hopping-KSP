@@ -369,6 +369,10 @@ def popup(msg):
     label.grid(row=0)
     popup.mainloop()
 
+def find_hop_name(ra, dec):
+	full_hops_list = pd.read_csv(full_hops_list.csv)
+	hop = full_hops_list[(full_hops_list['RAJ2000'] == ra) & (full_hops_list['RAJ2000'] == dec)]
+	return hop['Name']
 
 def get_input_values():
     global inp_in, ra_in, dec_in, fov, m_lim
@@ -392,6 +396,8 @@ def get_input_values():
         find_res = np.array([x.find(inp) for x in name_resolver])
         pos = np.where(find_res != -1)[0]
         ra_in, dec_in = df['RAJ2000'][pos].values, df['DEJ2000'][pos].values
+        ra_in = ra_in[0]
+        dec_in = dec_in[0]
 
     elif all([x.isalnum() for x in inp2]):
         inp = inp.title()
@@ -402,12 +408,20 @@ def get_input_values():
         find_res = np.array([x.find(inp) for x in ident])
         pos = np.where(find_res != -1)[0]
         ra_in, dec_in = df['RAJ2000'][pos].values, df['DEJ2000'][pos].values
+        ra_in = ra_in[0]
+        dec_in = dec_in[0]
 
     if len(ra_in) == 0 or len(dec_in) == 0:
         popup("No such object exists. Try again!")
 
     if len(ra_in) > 1 or len(dec_in) > 1:
         popup("Many such object exists. Try something specific!")
+    
+    # hops = pd.read_csv("hops_"+str(find_hop_name(ra_in, dec_in)))
+    hops = pd.read_csv("hopping.csv")    
+
+    Lon = hops['RAJ2000'].tolist()
+    Lat = hops['DEJ2000'].tolist()
 
     popup("Values submitted successfully!")
 
