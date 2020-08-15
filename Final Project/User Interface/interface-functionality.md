@@ -69,3 +69,11 @@ Two telescopic plots can be generated as per user choice, on having field of vie
 This is how the Navigation bar looks like:
 
 ![img](https://github.com/Liza23/Star-Hopping-KSP/blob/master/Final%20Project/User%20Interface/example-images/nav.png)
+
+Following are the functions of each of the button from right to left:
+- The "Save" button is used to save the image of the plot that is draw and can be used for future references.
+- The "Hamber-shaped" button has 
+- The "Magnify" button is used to zoom into the plot.
+- The "All-direction-arrow-shaped" button is used move in different directions across the plot.
+- The "Right-arrows" and "Left-arrows" are used to go from one view to other which the user would have created while zooming in or out.
+- The "Home" button is used to get the first view or the original view of the plot. 
