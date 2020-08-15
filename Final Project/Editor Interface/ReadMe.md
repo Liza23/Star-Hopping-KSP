@@ -13,10 +13,10 @@ The editor has to click at the point where he wants to hop the stars in the inte
 ## High-level Code Overview
 To understand the code fully, refer to the [coding documentation](). On a broader level, in the file `editor_interface_final.py`, *line 1-450* aims at making the plot and the editor interface and the rest deals with the hopping algorithm.
 
-## Example Explaination
+## Example
 We've created sample hops for M-37. The entire hop information is present in file `hops_M37.csv`. It contains the stars in the hopping sequence along with the text that the editor have entered during the hopping. 
 
 ## Setup And Usage
-Please read the Set-Up Instructions available [here](https://github.com/Liza23/Star-Hopping-KSP/blob/master/Final%20Project/Editor%20Interface/Set-up-Instructions.md) to try hopping yourself as well.
+Please read the Setup Instructions available [here](https://github.com/Liza23/Star-Hopping-KSP/blob/master/Final%20Project/Editor%20Interface/Set-up-Instructions.md) to try hopping yourself as well.
 
 > Happy Hopping
