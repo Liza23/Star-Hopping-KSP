@@ -1,3 +1,12 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Jul  2 15:42:35 2020
+
+@author: sahyadri
+"""
+
+
 from astroquery.vizier import Vizier
 from astroquery.simbad import Simbad
 import requests
@@ -25,6 +34,16 @@ catalog.write("constellation_borders.csv", format="csv", overwrite="True")
 print('Done - Constellation borders\n')
 
 print('Downloading messier_objects.csv...')
+
+#Download magnitdue data from astropixels/SEDS
+page = requests.get("http://astropixels.com/messier/messiercat.html")
+soup = BeautifulSoup(page.content,'html.parser')
+table = soup.find_all('tbody')[0]
+rows = table.find_all('tr')
+mag = []
+for items in rows:
+    mag.append(items.find_all('td')[3].get_text())
+
 # The next three lines are to simplify the output table
 Simbad.reset_votable_fields()
 Simbad.remove_votable_fields('coordinates')
@@ -62,19 +81,28 @@ names = []
 name_rows = table.find_all('td')[1::9]
 for items in name_rows:
     if items.get_text()=='–\n':
-        names.append('')
+        names.append('-')
     else:
         names.append(items.get_text().strip('\n'))
+nURL = 'https://en.wikipedia.org/wiki/Messier_object'
+npage = requests.get(nURL)
+nsoup = BeautifulSoup(npage.content, 'html.parser')
+ngc=[]
+for i in range(23,1013,9):
+    ngc.append(nsoup.find_all('td')[i].get_text().strip())
 result_table.add_column(names,name="Common Name",index=3)
+result_table.add_column(mag,name="V (from SEDS)",index=8)
+result_table.add_column(ngc, name="NGC", index=2)
+messier_table = result_table
 
-result_table.write("messier_objects.csv", format="csv", overwrite="True")  # creates a csv file
+result_table.write("messier_objects.csv", format="csv", overwrite="True")# creates a csv file
 
 Simbad.reset_votable_fields()  # renders the prev changes to simbad class temporary.
 print('Done - Messier objects\n')
 
 print('Downloading NGC.csv...')
 
-v = Vizier(columns=['Name', 'Type', 'mag', 'RA (deg)', 'Dec (deg)'])  # Columns added to table
+v = Vizier(columns=['Name', 'Type', 'mag','RA (deg)', 'Dec (deg)'])  # Columns added to table
 v.ROW_LIMIT = -1
 result_table = v.get_catalogs("VII/118/ngc2000")[0]
 
@@ -83,14 +111,28 @@ result_table['Name'] = np.array(['IC ' + x[1:] if x[0] == 'I' else 'NGC ' + x fo
 result_table['Type'] = np.array([
                                     'Gal' if x == 'Gx' else 'OpC' if x == 'OC' else 'GlC' if x == 'Gb' else 'PN' if x == 'Pl' else 'Str' if x == '*' or x == 'D*' or x == '***' else '-' if x == '' or x == '-' or x == '?' else x
                                     for x in result_table['Type']])
+result_table['Name'] = [" ".join(x.split()) for x in result_table['Name']]
 
-# A dding constellation names
+# Adding constellation names
 coords = SkyCoord(result_table['_RAJ2000'], result_table['_DEJ2000'], unit="deg")
 const = coords.get_constellation()
 const = ['Bootes' if x == 'Boötes' else x for x in const]  # fixing for the unicode problem
 const_abr = coords.get_constellation(short_name="True")
 result_table.add_column(const, name="Constellation", index=2)
 
+result_table.add_column(np.zeros(len(result_table)), name="Messier")
+ngc_desig=[]
+for x in messier_table['NGC']:
+    ngc_desig.append(x.split(',')[0].strip())
+    try:
+        ngc_desig.append(x.split(',')[1].strip())
+    except:
+        None
+for x in ngc_desig:
+    for i in range(len(result_table)):
+        if x == result_table['Name'][i]:
+            result_table['Messier'][i]=1
+            
 # Adding an internal id number
 otype = result_table['Type']
 internal_id = [
@@ -124,6 +166,27 @@ ntable = pd.read_csv('NGC.csv')
 ntable = pd.DataFrame(ntable)
 ntable.insert(2, "Common Name", np.zeros(len(ntable['RAJ2000'])))
 ntable['Common Name'] = ntable.Name.map(ccat.set_index('Name').Object, na_action="ignore")
+ntable['Common Name'] = ntable['Common Name'].fillna('-')
+
+#Changing the coordinates of messier objects to refernece SIMBAD for uniformity
+#find_res = np.array([x.find('M') for x in ntable['Common Name']])
+#pos = np.where(find_res!=-1)[0]
+#rd = [x for x in ntable['Name'][pos]]
+#Simbad.TIME_OUT = -1
+#Simbad.reset_votable_fields()
+#Simbad.ROW_LIMIT = 100000
+#Simbad.remove_votable_fields('coordinates')
+#Simbad.add_votable_fields('ra(d;A;ICRS;J2000;2000)', 'dec(d;D;ICRS;J2000;2000)')
+#names = np.array(rd)
+#radec = Simbad.query_objects(names)
+#ra = [x for x in radec['RA_d_A_ICRS_J2000_2000']]
+#dec = [x for x in radec['DEC_d_D_ICRS_J2000_2000']]
+#Simbad.reset_votable_fields()
+#pos = [x for x in pos]
+
+#ntable.loc[pos,'RAJ2000'] = ra
+#ntable.loc[pos,'DEJ2000'] = dec
+
 ntable.to_csv('NGC.csv')
 ntable = Table.read('NGC.csv')
 ntable.remove_columns(['col0'])
@@ -140,7 +203,7 @@ v = Vizier(columns=['HD', 'TYC', 'HIP', 'Vmag', 'Fl', 'Bayer', 'Cst'])
 v.ROW_LIMIT = -1
 v.TIMEOUT = 1000
 cross_catalog = v.get_catalogs('IV/27A/catalog')[0]
-bayer_const = ['{} {}'.format(x['Bayer'], x['Cst']) for x in cross_catalog]
+bayer_const = ['{} {}'.format(x['Bayer'], x['Cst']) if len(x['Bayer'])!=0 else '{} {}'.format(x['Fl'], x['Cst']) for x in cross_catalog]
 cross_catalog.remove_columns("Bayer")
 cross_catalog['BayerConst'] = bayer_const
 cross_catalog.write("CrossCatalog.csv", format='csv', overwrite="True")
@@ -159,7 +222,7 @@ for items in hd_missing:
         hip.append(ident_table[ind][0].split()[1])
     else:
         hip.append('0')
-
+        
 cross_catalog['HIP'][miss_index] = hip
 cross_catalog.write("CrossCatalog.csv", format='csv', overwrite="True")
 
@@ -243,6 +306,10 @@ while run:
     ccat = ccat.loc[~ccat.HIP.duplicated(keep='first')]
     ttable.insert(4, "Bayer", np.zeros(len(ttable['RAJ2000'])))
     ttable['Bayer'] = ttable.HIP.map(ccat.set_index('HIP').BayerConst, na_action="ignore")
+    ttable['Bayer']= ttable['Bayer'].fillna('')
+    if maxV==6:
+        ttable['Bayer']=np.where(ttable.Bayer=='',ttable.HD.map(ccat.set_index('HD').BayerConst, na_action="ignore"),ttable.Bayer)
+        ttable['Bayer']=ttable['Bayer'].fillna('')
     del ttable['Unnamed: 0']
     if run_count == 1:
         ttable.to_csv('tycho-1.csv', index=False)

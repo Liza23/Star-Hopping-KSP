@@ -9,6 +9,8 @@ The first field asks "Which Messier object you want to hop?". Here the user have
 
 **Some guidlines while giving an input:** Even though the Name resolver will map the input to the RA/DEC value of the messier object. It is advised to give input in any of the following forms: M x/ m x/ common-name. Don't try giving inputs like M-x/ m-x/ Mx, etc. Here, x is the Messier number of the object.
 
+**Warning:** If you want to input any Messier object from M 1-9, then don't give input in the above mentioned forms, instead type out the common name for the Messier object.
+
 ## Telescopic Details
 ### Aperture of the telescope
 This is a necessary field and is used for calculating the limiting magnitude of the telescope using the formula:
